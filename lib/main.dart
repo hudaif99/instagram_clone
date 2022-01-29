@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/firstPage.dart';
+import 'package:instagram_clone/homePage.dart';
 import 'package:instagram_clone/login.dart';
 import 'package:instagram_clone/sample.dart';
 import 'package:instagram_clone/signup.dart';
+import 'package:instagram_clone/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SignupPage()
+      home: SplashScreen()
     );
   }
 }

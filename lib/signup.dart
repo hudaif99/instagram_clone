@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/firstPage.dart';
+import 'package:instagram_clone/homePage.dart';
+import 'package:instagram_clone/login.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -18,59 +21,66 @@ class _SignupPageState extends State<SignupPage>
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(left: 30,right: 30),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 170,bottom: 20),
-              width: 150,
-              height: 150,
-              child: ImageIcon(AssetImage("assets/images/profile.png")),
-            ),
-            TabBar(
-              unselectedLabelColor: Colors.black54,
-              labelColor: Colors.black,
-              tabs: [
-                Tab(
-                  text: "PHONE NUMBER",
-                ),
-                Tab(
-                  text: "EMAIL ADDRESS",
-                )
-              ],
-              controller: _tabController,
-              indicatorSize: TabBarIndicatorSize.tab,
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [PhoneNumber(), EmailAddress()],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.only(left: 30,right: 30),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 170,bottom: 20),
+                width: 150,
+                height: 150,
+                child: ImageIcon(AssetImage("assets/images/profile.png")),
+              ),
+              TabBar(
+                unselectedLabelColor: Colors.black54,
+                labelColor: Colors.black,
+                tabs: [
+                  Tab(
+                    text: "PHONE NUMBER",
+                  ),
+                  Tab(
+                    text: "EMAIL ADDRESS",
+                  )
+                ],
                 controller: _tabController,
+                indicatorSize: TabBarIndicatorSize.tab,
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [PhoneNumber(), EmailAddress()],
+                  controller: _tabController,
+                ),
+              ),
+            ],
+          ),
+        ),
+        bottomSheet: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (ctx)=>LoginPage()));
+              },
+              child: Container(
+                padding: EdgeInsets.all(15),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Already have an account? ',
+                    style: TextStyle(fontSize: 13,color: Colors.black),
+                    children: const <TextSpan>[
+                      TextSpan(text: 'Log in.', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo,fontSize: 13)),
+
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
         ),
-      ),
-      bottomSheet: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.all(15),
-            child: RichText(
-              text: TextSpan(
-                text: 'Already have an account? ',
-                style: TextStyle(fontSize: 13),
-                children: const <TextSpan>[
-                  TextSpan(text: 'Log in.', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo,fontSize: 13)),
-
-                ],
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -84,6 +94,7 @@ class PhoneNumber extends StatefulWidget {
 }
 
 class _PhoneNumberState extends State<PhoneNumber> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -91,8 +102,9 @@ class _PhoneNumberState extends State<PhoneNumber> {
       height: MediaQuery.of(context).size.height/2,
       width: MediaQuery.of(context).size.width,
       child: Column(
+        key: _formKey,
         children: [
-          TextField(
+          TextFormField(
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -100,12 +112,28 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 hintStyle: TextStyle(fontSize: 14),
               prefix: Text("IN +91 | "),prefixStyle: TextStyle(color: Colors.black)
                 ),
+            // validator: (value){
+            //   if(value?.length != 10  ){
+            //     return "Invalid parametars";
+            //   }
+            //   // else if(value == String ){
+            //   //   return "please enter mobile number";
+            //   // }
+            //   else{
+            //     return null;
+            //   }
+            // },
           ),
           SizedBox(height: 15,),
           Text("You may receieve SMS updates from Instagram and can opt out at any time.",style: TextStyle(fontSize: 12),),
           SizedBox(height: 15,),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              // if(!_formKey.currentState!.validate()){
+              //   return;
+              // }
+              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+            },
             child: Text("Next"),
             style: TextButton.styleFrom(
                 primary: Colors.white,
@@ -146,7 +174,9 @@ class _EmailAddressState extends State<EmailAddress> {
 
           SizedBox(height: 15,),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+            },
             child: Text("Next"),
             style: TextButton.styleFrom(
                 primary: Colors.white,
