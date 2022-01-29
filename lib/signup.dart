@@ -94,7 +94,7 @@ class PhoneNumber extends StatefulWidget {
 }
 
 class _PhoneNumberState extends State<PhoneNumber> {
-  final _formKey = GlobalKey<FormState>();
+  final phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -102,7 +102,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
       height: MediaQuery.of(context).size.height/2,
       width: MediaQuery.of(context).size.width,
       child: Column(
-        key: _formKey,
+        // key: _formKey,
         children: [
           TextFormField(
             keyboardType: TextInputType.phone,
@@ -133,6 +133,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
               //   return;
               // }
               Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+              // checkPhone();
             },
             child: Text("Next"),
             style: TextButton.styleFrom(
@@ -144,6 +145,15 @@ class _PhoneNumberState extends State<PhoneNumber> {
         ],
       ),
     );
+  }
+ void checkPhone(){
+    final phoneNum = phoneNumberController.text;
+    if(phoneNum.length == 10){
+      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+    }
+    else{
+
+    }
   }
 }
 
