@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/login.dart';
 import 'package:instagram_clone/signup.dart';
@@ -9,29 +10,29 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFf5f5f5),
+        backgroundColor: const Color(0xFFf5f5f5),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 30,right: 30),
+              padding: const EdgeInsets.only(left: 30,right: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text("English (United Kingdom)",style: TextStyle(color: Colors.black45,fontSize: 13),),
                         Icon(Icons.keyboard_arrow_down,color: Colors.black45,size: 20,)
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 220,bottom: 100),
+                    padding: const EdgeInsets.only(top: 220,bottom: 100),
                     child: Image.asset("assets/images/instagram_logo.png",width: 200,height: 100,),
                   ),
 
@@ -39,7 +40,7 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Icon(Icons.facebook_sharp,size: 20,),
                         SizedBox(width: 5,),
                         Text("Log in With Facebook",style: TextStyle(fontSize: 13),),
@@ -52,23 +53,23 @@ class FirstPage extends StatelessWidget {
                         minimumSize: const Size(double.infinity, 40),
                         elevation: 20),
                   ),
-                  SizedBox(height: 50,),
+                  const SizedBox(height: 50,),
                   Row(children: <Widget>[
                     Expanded(
-                      child: new Container(
+                      child: Container(
                           margin: const EdgeInsets.only( right: 10.0),
-                          child: Divider(
+                          child: const Divider(
                             color: Colors.black45,
                             height: 50,
                           )),
                     ),
 
-                    Text("OR",style: TextStyle(color: Colors.black45),),
+                    const Text("OR",style: TextStyle(color: Colors.black45),),
 
                     Expanded(
-                      child: new Container(
+                      child: Container(
                           margin: const EdgeInsets.only(left: 10.0),
-                          child: Divider(
+                          child: const Divider(
                             color: Colors.black45,
                             height: 50,
                           )),
@@ -76,11 +77,9 @@ class FirstPage extends StatelessWidget {
                   ]),
                   GestureDetector(
                     onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>SignupPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const SignupPage()));
                     },
-                    child: Container(
-                        // padding: EdgeInsets.only(top: 100),
-                        child: Text("Sign Up with Email Address or Phone Number",style: TextStyle(color: Colors.blue,fontSize: 13),)),
+                    child: const Text("Sign Up with Email Address or Phone Number",style: TextStyle(color: Colors.blue,fontSize: 13),),
                   ),
                   // Expanded(
                   //   child: Divider(
@@ -99,15 +98,15 @@ class FirstPage extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>LoginPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const LoginPage()));
               },
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: 'Already have an account? ',
                     style: TextStyle(fontSize: 13,color: Colors.black),
-                    children: const <TextSpan>[
+                    children: <TextSpan>[
                       TextSpan(text: 'Log in.', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo,fontSize: 13)),
 
                     ],

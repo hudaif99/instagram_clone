@@ -24,21 +24,21 @@ class _SignupPageState extends State<SignupPage>
     return SafeArea(
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.only(left: 30,right: 30),
+          padding: const EdgeInsets.only(left: 30,right: 30),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 170,bottom: 20),
+                margin: const EdgeInsets.only(top: 170,bottom: 20),
                 width: 150,
                 height: 150,
-                child: ImageIcon(AssetImage("assets/images/profile.png")),
+                child: const ImageIcon(AssetImage("assets/images/profile.png")),
               ),
               TabBar(
                 unselectedLabelColor: Colors.black54,
                 labelColor: Colors.black,
-                tabs: [
+                tabs: const [
                   Tab(
                     text: "PHONE NUMBER",
                   ),
@@ -51,7 +51,7 @@ class _SignupPageState extends State<SignupPage>
               ),
               Expanded(
                 child: TabBarView(
-                  children: [PhoneNumber(), EmailAddress()],
+                  children: const [PhoneNumber(), EmailAddress()],
                   controller: _tabController,
                 ),
               ),
@@ -63,15 +63,15 @@ class _SignupPageState extends State<SignupPage>
           children: [
             GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (ctx)=>LoginPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const LoginPage()));
               },
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: 'Already have an account? ',
                     style: TextStyle(fontSize: 13,color: Colors.black),
-                    children: const <TextSpan>[
+                    children: <TextSpan>[
                       TextSpan(text: 'Log in.', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo,fontSize: 13)),
 
                     ],
@@ -94,66 +94,55 @@ class PhoneNumber extends StatefulWidget {
 }
 
 class _PhoneNumberState extends State<PhoneNumber> {
-  final phoneNumberController = TextEditingController();
+  // final phoneNumberController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20),
       height: MediaQuery.of(context).size.height/2,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        // key: _formKey,
-        children: [
-          TextFormField(
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Phone number",
-                hintStyle: TextStyle(fontSize: 14),
-              prefix: Text("IN +91 | "),prefixStyle: TextStyle(color: Colors.black)
-                ),
-            // validator: (value){
-            //   if(value?.length != 10  ){
-            //     return "Invalid parametars";
-            //   }
-            //   // else if(value == String ){
-            //   //   return "please enter mobile number";
-            //   // }
-            //   else{
-            //     return null;
-            //   }
-            // },
-          ),
-          SizedBox(height: 15,),
-          Text("You may receieve SMS updates from Instagram and can opt out at any time.",style: TextStyle(fontSize: 12),),
-          SizedBox(height: 15,),
-          TextButton(
-            onPressed: () {
-              // if(!_formKey.currentState!.validate()){
-              //   return;
-              // }
-              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
-              // checkPhone();
-            },
-            child: Text("Next"),
-            style: TextButton.styleFrom(
-                primary: Colors.white,
-                backgroundColor: Colors.blue,
-                minimumSize: const Size(double.infinity, 50),
-                elevation: 20),
-          ),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          // key: _formKey,
+          children: [
+            TextFormField(
+              keyboardType: TextInputType.phone,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Phone number",
+                  hintStyle: TextStyle(fontSize: 14),
+                prefix: Text("IN +91 | "),prefixStyle: TextStyle(color: Colors.black)
+                  ),
+              validator: (value){
+                if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
+                  return "Invalid parameters";
+                }
+              },
+            ),
+            const SizedBox(height: 15,),
+            const Text("You may receive SMS updates from Instagram and can opt out at any time.",style: TextStyle(fontSize: 12),),
+            const SizedBox(height: 15,),
+            TextButton(
+              onPressed: () {
+                if(formKey.currentState!.validate()){
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const HomePage()));
+                }
+
+                // checkPhone();
+              },
+              child: const Text("Next"),
+              style: TextButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: Colors.blue,
+                  minimumSize: const Size(double.infinity, 50),
+                  elevation: 20),
+            ),
+          ],
+        ),
       ),
     );
-  }
- void checkPhone(){
-    final phoneNum = phoneNumberController.text;
-    if(phoneNum.length == 10){
-      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
-    }
-    else{
-
-    }
   }
 }
 
@@ -165,36 +154,48 @@ class EmailAddress extends StatefulWidget {
 }
 
 class _EmailAddressState extends State<EmailAddress> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20),
       height: MediaQuery.of(context).size.height/2,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          TextField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Email address",
-                hintStyle: TextStyle(fontSize: 14),
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Email address",
+                  hintStyle: TextStyle(fontSize: 14),
+              ),
+              validator: (value){
+                if(value!.isEmpty || !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]+$').hasMatch(value)){
+                  return "Invalid parameters";
+                }
+              },
             ),
-          ),
 
-          SizedBox(height: 15,),
-          TextButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
-            },
-            child: Text("Next"),
-            style: TextButton.styleFrom(
-                primary: Colors.white,
-                backgroundColor: Colors.blue,
-                minimumSize: const Size(double.infinity, 50),
-                elevation: 20),
-          ),
-        ],
+            const SizedBox(height: 15,),
+            TextButton(
+              onPressed: () {
+                if(formKey.currentState!.validate()){
+                  Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const HomePage()));
+                }
+
+              },
+              child: const Text("Next"),
+              style: TextButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: Colors.blue,
+                  minimumSize: const Size(double.infinity, 50),
+                  elevation: 20),
+            ),
+          ],
+        ),
       ),
     );
   }

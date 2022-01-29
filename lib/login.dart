@@ -12,13 +12,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFf5f5f5),
+        backgroundColor: const Color(0xFFf5f5f5),
         body: Container(
-          padding: EdgeInsets.only(left: 30, right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -43,36 +44,56 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 15,
               ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Phone number, email address or username",
-                    hintStyle: TextStyle(fontSize: 14)),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "password",
-                    hintStyle: TextStyle(fontSize: 14),
-                    suffixIcon: Icon(Icons.remove_red_eye)),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
-                },
-                child: Text("Log in"),
-                style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue,
-                    minimumSize: const Size(double.infinity, 50),
-                    elevation: 20),
+              Container(
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "Phone number, email address or username",
+                            hintStyle: TextStyle(fontSize: 14)),
+                        validator: (value){
+                          if(value!.isEmpty ){
+                            return "Invalid parameters";
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "password",
+                            hintStyle: TextStyle(fontSize: 14),
+                            suffixIcon: Icon(Icons.remove_red_eye)),
+                        validator: (value){
+                          if(value!.isEmpty || value.length<6){
+                            return "please enter minimum 6 characters";
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextButton(
+                        onPressed: () {
+    if(formKey.currentState!.validate()){
+    Navigator.push(context, MaterialPageRoute(builder: (ctx)=>HomePage()));
+    }
+                        },
+                        child: Text("Log in"),
+                        style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.blue,
+                            minimumSize: const Size(double.infinity, 50),
+                            elevation: 20),
+                      ),                    ],
+                  ),
+                ),
               ),
               SizedBox(
                 height: 15,
