@@ -116,7 +116,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 prefix: Text("IN +91 | "),prefixStyle: TextStyle(color: Colors.black)
                   ),
               validator: (value){
-                if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
+                if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)|| value.length != 10){
                   return "Invalid parameters";
                 }
               },
