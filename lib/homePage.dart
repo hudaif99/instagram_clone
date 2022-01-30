@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'home/homeInsta.dart';
+import 'package:icon_badge/icon_badge.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Color(0xFFf5f5f5),
           actions: [
             Icon(
@@ -53,10 +55,17 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: 16,
             ),
-            Icon(
-              FontAwesomeIcons.paperPlane,
-              color: Colors.black,
-              size: 25,
+            IconBadge(
+              icon: Icon(
+                FontAwesomeIcons.paperPlane,
+                color: Colors.black,
+                size: 25,
+              ),
+              itemCount: 5,
+              badgeColor: Colors.red,
+              itemColor: Colors.white,
+              maxCount: 99,
+              hideZero: true,
             ),
             SizedBox(
               width: 10,
@@ -106,9 +115,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Color(0xFFfeda75),
+                                                Color(0xFFfa7e1e),
+                                                Color(0xFFd62976),
+                                                Color(0xFF962fbf),
+                                                Color(0xFF4f5bd5),
+                                              ],
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.topLeft),
+                                          borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 1",style: TextStyle(fontSize: 12),)
@@ -117,9 +143,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 2",style: TextStyle(fontSize: 12),)
@@ -128,9 +171,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 3",style: TextStyle(fontSize: 12),)
@@ -139,9 +199,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 4",style: TextStyle(fontSize: 12),)
@@ -150,9 +227,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 5",style: TextStyle(fontSize: 12),)
@@ -161,9 +255,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 6",style: TextStyle(fontSize: 12),)
@@ -172,9 +283,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 7",style: TextStyle(fontSize: 12),)
@@ -183,9 +311,26 @@ class _HomePageState extends State<HomePage> {
                                   Column(
                                     children: [
                                       Container(
-                                        child: CircleAvatar(radius: 30,
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0xFFfeda75),
+                                                  Color(0xFFfa7e1e),
+                                                  Color(0xFFd62976),
+                                                  Color(0xFF962fbf),
+                                                  Color(0xFF4f5bd5),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.topLeft),
+                                            borderRadius: BorderRadius.circular(50)
+                                        ) ,
+                                        child: CircleAvatar(
+                                          radius: 33,
+                                          backgroundColor: Colors.transparent,
+                                          child: CircleAvatar(radius: 30,
+                                              backgroundColor: Colors.white,
+                                              backgroundImage: AssetImage("assets/images/my_profile.png",)),
+                                        ),
                                       ),
                                       SizedBox(height: 5,),
                                       Text("User 8",style: TextStyle(fontSize: 12),)
